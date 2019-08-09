@@ -13,7 +13,7 @@ data_08 <- read_dta("C:/Users/tacky/Documents/Adat/Adat_bertarifa/tarifa2008_b2.
 # alsokas?g
 
 tarifred_08 <- subset(data_08, fforma==1 & atip==4)
-# tarifred_09 <- subset(data_09, fforma==1 & atip==4)
+tarifred_09 <- subset(data_09, fforma==1 & atip==4)
 # tarifred_10 <- subset(data_10, fforma==1 & atip==4)
 # tarifred_11 <- subset(data_11, fforma==1 & atip==4)
 # tarifred_12 <- subset(data_12, fforma==1 & atip==4)
@@ -63,14 +63,14 @@ tarifred_08 <- delete_missing_obs(tarifred_08)
 # factors
 source("C:/Users/tacky/Documents/kutatas/bertarifa/codes/funs/factorizalas.R")
 tarifred_08 <- get_factors(tarifred_08)
-tarifred_09 <- get_factors(tarifred_09)
-tarifred_10 <- get_factors(tarifred_10)
-tarifred_11 <- get_factors(tarifred_11)
-tarifred_12 <- get_factors(tarifred_12)
-tarifred_13 <- get_factors(tarifred_13)
-tarifred_14 <- get_factors(tarifred_14)
-tarifred_15 <- get_factors(tarifred_15)
-tarifred_16 <- get_factors(tarifred_16)
+# tarifred_09 <- get_factors(tarifred_09)
+# tarifred_10 <- get_factors(tarifred_10)
+# tarifred_11 <- get_factors(tarifred_11)
+# tarifred_12 <- get_factors(tarifred_12)
+# tarifred_13 <- get_factors(tarifred_13)
+# tarifred_14 <- get_factors(tarifred_14)
+# tarifred_15 <- get_factors(tarifred_15)
+# tarifred_16 <- get_factors(tarifred_16)
 
 
 

@@ -15,7 +15,7 @@ data_08 <- read_dta("C:/Users/tacky/Documents/Adat/Adat_bertarifa/tarifa2008_b2.
 
 tarifred_08 <- subset(data_08, fforma==1 & atip==4)
 tarifred_09 <- subset(data_09, fforma==1 & atip==4)
-# tarifred_10 <- subset(data_10, fforma==1 & atip==4)
+tarifred_10 <- subset(data_10, fforma==1 & atip==4)
 # tarifred_11 <- subset(data_11, fforma==1 & atip==4)
 # tarifred_12 <- subset(data_12, fforma==1 & atip==4)
 # tarifred_13 <- subset(data_13, fforma==1 & atip==4)

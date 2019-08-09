@@ -17,6 +17,6 @@ delete_missing_obs <- function(df){
            & !is.na(df$ttip)
            & !is.na(df$szesu_v1)
            & !is.na(df$nok_aranya)
-           
+           & df$kshreg!=0
            ,]
 }

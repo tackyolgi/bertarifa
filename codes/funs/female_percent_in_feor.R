@@ -18,10 +18,10 @@ get_female_percent_in_feor97 <- function(df_full, df_sample){
   megoszlas_full <- left_join(megoszlas_full, megoszlas_sample,
                               by=("feor_2"="feor_2"))
   
-  megoszlas_full <- as.data.frame(megoszlas_full)
+  megoszlas_full <- as.data.frame.matrix(megoszlas_full)
   
   df_sample$feor_2<-as.integer(df_sample$feor_2)
   
-  df_sample <- left_join(df_sample,megoszlas, by=c("feor_2"="feor_2"))
+  df_sample <- left_join(df_sample, megoszlas_full, by=c("feor_2"="feor_2"))
   
 }

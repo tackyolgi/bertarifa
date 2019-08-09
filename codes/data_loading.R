@@ -10,6 +10,13 @@ data_08 <- read_dta("C:/Users/tacky/Documents/Adat/Adat_bertarifa/tarifa2008_b2.
 # data_15 <- read_dta("C:/Users/tacky/Documents/Adat/Adat_bertarifa/tarifa2015_b2_A.dta")
 # data_16 <- read_dta("C:/Users/tacky/Documents/Adat/Adat_bertarifa/tarifa2016_b2_A.dta")
 
+
+# 2 jegyu feor
+data_08$feor_2 <- substr(data_08$feor1997_4, 1,2)
+
+tarifred_08$feor_2 <- substr(tarifred_08$feor1997_4, 1,2)
+
+
 # alsokas?g
 tarifred_08 <- subset(data_08, fforma==1 & atip==4)
 # tarifred_09 <- subset(data_09, fforma==1 & atip==4)

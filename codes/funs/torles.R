@@ -18,5 +18,7 @@ delete_missing_obs <- function(df){
            & !is.na(df$szesu_v1)
            & !is.na(df$nok_aranya)
            & df$kshreg!=0
+           & df$nok_sample>=10
+           & df$ferfiak_sample>=10
            ,]
 }

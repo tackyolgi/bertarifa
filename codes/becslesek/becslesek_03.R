@@ -58,24 +58,6 @@ get_A_oax_RF_R1 <- function(df, valt_szama, level_szam, num_tree) {
                                 nodesize=level_szam, ntree=num_tree,
                                 importance = F,proximity=F,
                                 data=df)
-    Fadat <- subset(df, nem == 0)
-    Madat <- subset(df, nem == 1)
-    randfor_F <- randomForest(lnker ~ iskveg9 +ujbel + kor +kor2
-                              +szolgho+letszam_bv1
-                              + ag1+ ksz+ kag+kol+ ara+ kra
-                              +   kshreg + ttip+szesu_v1,
-                              na.action=na.omit, mtry=valt_szama,
-                              nodesize=level_szam, ntree=num_tree,
-                              importance = F,proximity=F,
-                              data=Fadat)
-    randfor_M <- randomForest(lnker ~ nem+iskveg9 +ujbel + kor +kor2
-                              +szolgho+letszam_bv1
-                              + ag1+ ksz+ kag+kol+ ara+ kra
-                              +   kshreg + ttip+szesu_v1,
-                              na.action=na.omit, mtry=valt_szama,
-                              nodesize=level_szam, ntree=num_tree,
-                              importance = F,proximity=F,
-                              data=Madat)
     
 }
 
@@ -166,7 +148,7 @@ get_B_oax_RF_male <- function(df, valt_szama, level_szam, num_tree){
   
 }
 
-get_c_oax_RF_R1 <- function(df, valt_szama, level_szam, num_tree) {
+get_C_oax_RF_R1 <- function(df, valt_szama, level_szam, num_tree) {
   randfor_ref <- randomForest(lnker ~ nem+iskveg9 +ujbel + kor +kor2+szolgho+letszam_bv1
                               + ag1+ ksz+ kag+kol+ ara+ kra+   kshreg + ttip+szesu_v1
                               + nok_aranya,
@@ -201,6 +183,7 @@ get_C_oax_RF_female <- function(df, valt_szama, level_szam, num_tree){
                               nodesize=level_szam, ntree=num_tree,
                               importance = F,proximity=F,
                               data=df_female)
+  
   
 }
 

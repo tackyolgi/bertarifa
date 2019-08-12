@@ -269,4 +269,14 @@ C_oax_regr <- get_C_oax_regr(minta$train)
     results <- as.data.frame(rbind(results,(cbind(modszer="C_R1", nyers=raw, magyarazott=expl, 
                                                   nem_magyarazott=unexpl, 
                                                   kulonbseg=raw-expl-unexpl))))
+
+# prediction elmentése
+    minta$test$A_oax_regr_R1_pred <- predict(A_oax_regr$reg$reg.pooled.2, minta$test)
+    minta$test$B_oax_regr_R1_pred <- predict(B_oax_regr$reg$reg.pooled.2, minta$test)
+    minta$test$C_oax_regr_R1_pred <- predict(C_oax_regr$reg$reg.pooled.2, minta$test)
+    
+    minta$test$A_oax_regr_R2_pred <- predict(A_oax_regr$reg$reg.pooled.1, minta$test)
+    minta$test$B_oax_regr_R2_pred <- predict(B_oax_regr$reg$reg.pooled.1, minta$test)
+    minta$test$C_oax_regr_R2_pred <- predict(C_oax_regr$reg$reg.pooled.1, minta$test)
+
     

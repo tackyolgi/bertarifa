@@ -17,9 +17,9 @@ obs_num <- 60000
 
 # parameters
 # random forest
-num_tree <- 100      # ntree
+num_tree <- 250      # ntree
 valt_szama <- 5      # mtry
-level_szam <- 100    # nodesize
+level_szam <- 50    # nodesize
 
 # becslesek
 library(oaxaca)

@@ -52,7 +52,7 @@ get_C_oax_regr <- function(df) {
 
 # random forest
 get_A_oax_RF_R1 <- function(df, valt_szama, level_szam, num_tree) {
-    randfor_ref <- randomForest(lnker ~ nem+iskveg9 +ujbel + kor +kor2+szolgho+letszam_bv1
+    randfor_ref <- randomForest(lnker ~ nem+iskveg9 +ujbel + kor +szolgho+letszam_bv1
                                 + ag1+ ksz+ kag+kol+ ara+ kra+   kshreg + ttip+szesu_v1,
                                 na.action=na.omit, mtry=valt_szama,
                                 nodesize=level_szam, ntree=num_tree,
@@ -62,7 +62,7 @@ get_A_oax_RF_R1 <- function(df, valt_szama, level_szam, num_tree) {
 }
 
 get_A_oax_RF_R2 <- function(df, valt_szama, level_szam, num_tree) {
-  randfor_ref <- randomForest(lnker ~ iskveg9 +ujbel + kor +kor2+szolgho+letszam_bv1
+  randfor_ref <- randomForest(lnker ~ iskveg9 +ujbel + kor+szolgho+letszam_bv1
                               + ag1+ ksz+ kag+kol+ ara+ kra+   kshreg + ttip+szesu_v1,
                               na.action=na.omit, mtry=valt_szama,
                               nodesize=level_szam, ntree=num_tree,
@@ -73,7 +73,7 @@ get_A_oax_RF_R2 <- function(df, valt_szama, level_szam, num_tree) {
 get_A_oax_RF_female <- function(df, valt_szama, level_szam, num_tree){
   df_female <- subset(df, nem==0)
   
-  randfor_ref <- randomForest(lnker ~ iskveg9 +ujbel + kor +kor2
+  randfor_ref <- randomForest(lnker ~ iskveg9 +ujbel + kor
                               +szolgho+letszam_bv1
                               + ag1+ ksz+ kag+kol+ ara+ kra
                               +   kshreg + ttip+szesu_v1,
@@ -87,7 +87,7 @@ get_A_oax_RF_female <- function(df, valt_szama, level_szam, num_tree){
 get_A_oax_RF_male <- function(df, valt_szama, level_szam, num_tree){
   df_male <- subset(df, nem==1)
   
-  randfor_ref <- randomForest(lnker ~ iskveg9 +ujbel + kor +kor2
+  randfor_ref <- randomForest(lnker ~ iskveg9 +ujbel + kor
                               +szolgho+letszam_bv1
                               + ag1+ ksz+ kag+kol+ ara+ kra
                               +   kshreg + ttip+szesu_v1,
@@ -99,7 +99,7 @@ get_A_oax_RF_male <- function(df, valt_szama, level_szam, num_tree){
 }
 
 get_B_oax_RF_R1 <- function(df, valt_szama, level_szam, num_tree) {
-  randfor_ref <- randomForest(lnker ~ nem+iskveg9 +ujbel + kor +kor2+szolgho+letszam_bv1
+  randfor_ref <- randomForest(lnker ~ nem+iskveg9 +ujbel + kor+szolgho+letszam_bv1
                               + ag1+ ksz+ kag+kol+ ara+ kra+   kshreg + ttip+szesu_v1+ feor_2,
                               na.action=na.omit, mtry=valt_szama,
                               nodesize=level_szam, ntree=num_tree,
@@ -108,7 +108,7 @@ get_B_oax_RF_R1 <- function(df, valt_szama, level_szam, num_tree) {
 }
 
 get_B_oax_RF_R2 <- function(df, valt_szama, level_szam, num_tree) {
-  randfor_ref <- randomForest(lnker ~ iskveg9 +ujbel + kor +kor2
+  randfor_ref <- randomForest(lnker ~ iskveg9 +ujbel + kor
                               +szolgho+letszam_bv1
                               + ag1+ ksz+ kag+kol+ ara+ kra
                               +   kshreg + ttip+szesu_v1+ feor_2,
@@ -123,7 +123,7 @@ get_B_oax_RF_R2 <- function(df, valt_szama, level_szam, num_tree) {
 get_B_oax_RF_female <- function(df, valt_szama, level_szam, num_tree){
   df_female <- subset(df, nem==0)
   
-  randfor_ref <- randomForest(lnker ~ iskveg9 +ujbel + kor +kor2
+  randfor_ref <- randomForest(lnker ~ iskveg9 +ujbel + kor
                               +szolgho+letszam_bv1
                               + ag1+ ksz+ kag+kol+ ara+ kra
                               +   kshreg + ttip+szesu_v1+ feor_2,
@@ -137,7 +137,7 @@ get_B_oax_RF_female <- function(df, valt_szama, level_szam, num_tree){
 get_B_oax_RF_male <- function(df, valt_szama, level_szam, num_tree){
   df_male <- subset(df, nem==1)
   
-  randfor_ref <- randomForest(lnker ~ iskveg9 +ujbel + kor +kor2
+  randfor_ref <- randomForest(lnker ~ iskveg9 +ujbel + kor
                               +szolgho+letszam_bv1
                               + ag1+ ksz+ kag+kol+ ara+ kra
                               +   kshreg + ttip+szesu_v1+ feor_2,
@@ -149,7 +149,7 @@ get_B_oax_RF_male <- function(df, valt_szama, level_szam, num_tree){
 }
 
 get_C_oax_RF_R1 <- function(df, valt_szama, level_szam, num_tree) {
-  randfor_ref <- randomForest(lnker ~ nem+iskveg9 +ujbel + kor +kor2+szolgho+letszam_bv1
+  randfor_ref <- randomForest(lnker ~ nem+iskveg9 +ujbel + kor +szolgho+letszam_bv1
                               + ag1+ ksz+ kag+kol+ ara+ kra+   kshreg + ttip+szesu_v1
                               + nok_aranya,
                               na.action=na.omit, mtry=valt_szama,
@@ -160,7 +160,7 @@ get_C_oax_RF_R1 <- function(df, valt_szama, level_szam, num_tree) {
 }
 
 get_C_oax_RF_R2 <- function(df, valt_szama, level_szam, num_tree) {
-  randfor_ref <- randomForest(lnker ~ iskveg9 +ujbel + kor +kor2
+  randfor_ref <- randomForest(lnker ~ iskveg9 +ujbel + kor
                               +szolgho+letszam_bv1
                               + ag1+ ksz+ kag+kol+ ara+ kra
                               +   kshreg + ttip+szesu_v1
@@ -175,7 +175,7 @@ get_C_oax_RF_R2 <- function(df, valt_szama, level_szam, num_tree) {
 get_C_oax_RF_female <- function(df, valt_szama, level_szam, num_tree){
   df_female <- subset(df, nem==0)
   
-  randfor_ref <- randomForest(lnker ~ iskveg9 +ujbel + kor +kor2
+  randfor_ref <- randomForest(lnker ~ iskveg9 +ujbel + kor
                               +szolgho+letszam_bv1
                               + ag1+ ksz+ kag+kol+ ara+ kra
                               +   kshreg + ttip+szesu_v1+ nok_aranya,
@@ -190,7 +190,7 @@ get_C_oax_RF_female <- function(df, valt_szama, level_szam, num_tree){
 get_C_oax_RF_male <- function(df, valt_szama, level_szam, num_tree){
   df_male <- subset(df, nem==1)
   
-  randfor_ref <- randomForest(lnker ~ iskveg9 +ujbel + kor +kor2
+  randfor_ref <- randomForest(lnker ~ iskveg9 +ujbel + kor
                               +szolgho+letszam_bv1
                               + ag1+ ksz+ kag+kol+ ara+ kra
                               +   kshreg + ttip+szesu_v1+ nok_aranya,

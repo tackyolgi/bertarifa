@@ -289,46 +289,266 @@ C_oax_regr <- get_C_oax_regr(minta$train)
  
   B_oax_RF_R1_ref <- get_B_oax_RF_R1(minta$train, valt_szama, level_szam, num_tree)
   B_oax_RF_R2_ref <- get_B_oax_RF_R2(minta$train, valt_szama, level_szam, num_tree)
+  B_oax_RF_female <- get_B_oax_RF_female(minta$train, valt_szama, level_szam, num_tree)
+  B_oax_RF_male <- get_B_oax_RF_male(minta$train, valt_szama, level_szam, num_tree)
+  
   C_oax_RF_R1_ref <- get_C_oax_RF_R1(minta$train, valt_szama, level_szam, num_tree)
   C_oax_RF_R2_ref <- get_C_oax_RF_R2(minta$train, valt_szama, level_szam, num_tree)
-  
-  
+  C_oax_RF_female <- get_C_oax_RF_female(minta$train, valt_szama, level_szam, num_tree)
+  C_oax_RF_male <- get_C_oax_RF_male(minta$train, valt_szama, level_szam, num_tree)
+ 
+   
+# A_R2
 # train adatbázison
   # nyers különbség
     raw <- mean(subset(minta$train, nem==0)$lnker)-mean(subset(minta$train, nem==1)$lnker)
   
   # magyarázott rész
-    expl <- mean(rmodel_oax_RF_train$pred_F_ref)-
-      mean(rmodel_oax_RF_train$pred_M_ref)
     
-    expl <- mean(ppredict()))-
-      mean(rmodel_oax_RF_train$pred_M_ref)
+    expl <- mean(predict(A_oax_RF_R2_ref, subset(minta$train, nem==0)))-
+      mean(predict(A_oax_RF_R2_ref, subset(minta$train, nem==1)))
+    
+  
   # nem magyarázott rész
-    unexpl <- mean(rmodel_oax_RF_train$pred_F_F)-mean(rmodel_oax_RF_train$pred_F_ref)+
-      mean(rmodel_oax_RF_train$pred_M_ref)-mean(rmodel_oax_RF_train$pred_M_M)
+    unexpl <- mean(A_oax_RF_female$predicted)-
+              mean(predict(A_oax_RF_R2_ref, subset(minta$train, nem==0)))+
+              mean(predict(A_oax_RF_R2_ref, subset(minta$train, nem==1)))-
+              mean(A_oax_RF_male$predicted)
     
   # eredmények
-    results <- as.data.frame(rbind(results,(cbind(nyers=raw, magyarazott=expl, 
+    results_RF <- as.data.frame((cbind(modszer="A_R2", nyers=raw, magyarazott=expl, 
                                                   nem_magyarazott=unexpl, 
-                                                  kulonbseg=raw-expl-unexpl))))
+                                                  kulonbseg=raw-expl-unexpl)))
     
 # test adatbázison
   # nyers különbség
     raw <- mean(subset(minta$test, nem==0)$lnker)-mean(subset(minta$test, nem==1)$lnker)
     
   # magyarázott rész
-    expl <- mean(predict(rmodel_oax_RF_train$RF_ref, subset(minta$test, nem==0)))-
-      mean(predict(rmodel_oax_RF_train$RF_ref, subset(minta$test, nem==1)))
-  
+    expl <- mean(predict(A_oax_RF_R2_ref, subset(minta$test, nem==0)))-
+      mean(predict(A_oax_RF_R2_ref, subset(minta$test, nem==1)))
+    
+    
   # nem magyarázott rész
-    unexpl <- mean(predict(rmodel_oax_RF_train$RF_female, subset(minta$test, nem==0)))-
-      mean(predict(rmodel_oax_RF_train$RF_ref, subset(minta$test, nem==0)))+
-      mean(predict(rmodel_oax_RF_train$RF_ref, subset(minta$test, nem==1)))-
-      mean(predict(rmodel_oax_RF_train$RF_male, subset(minta$test, nem==1)))
+    unexpl <- mean(predict(A_oax_RF_female, subset(minta$test, nem==0)))-
+      mean(predict(A_oax_RF_R2_ref, subset(minta$test, nem==0)))+
+      mean(predict(A_oax_RF_R2_ref, subset(minta$test, nem==1)))-
+      mean(predict(A_oax_RF_male, subset(minta$test, nem==1)))
     
   # eredmények
-    results <- as.data.frame(rbind(results,(cbind(nyers=raw, magyarazott=expl, 
+    results_RF <- as.data.frame(rbind(results_RF,(cbind(modszer="A_R2", nyers=raw, magyarazott=expl, 
                                                   nem_magyarazott=unexpl, 
                                                   kulonbseg=raw-expl-unexpl))))
     
-  
+
+# A_R1
+# train adatbázison
+  # nyers különbség
+    raw <- mean(subset(minta$train, nem==0)$lnker)-mean(subset(minta$train, nem==1)$lnker)
+    
+    # magyarázott rész
+    expl <- mean(predict(A_oax_RF_R1_ref, subset(minta$train, nem==0)))-
+      mean(predict(A_oax_RF_R1_ref, subset(minta$train, nem==1)))
+    
+    
+    # nem magyarázott rész
+    unexpl <- mean(A_oax_RF_female$predicted)-
+      mean(predict(A_oax_RF_R1_ref, subset(minta$train, nem==0)))+
+      mean(predict(A_oax_RF_R1_ref, subset(minta$train, nem==1)))-
+      mean(A_oax_RF_male$predicted)
+    
+    # eredmények
+    results_RF <- as.data.frame(rbind(results_RF,(cbind(modszer="A_R1", nyers=raw, magyarazott=expl, 
+                                       nem_magyarazott=unexpl, 
+                                       kulonbseg=raw-expl-unexpl))))
+    
+# test adatbázison
+  # nyers különbség
+    raw <- mean(subset(minta$test, nem==0)$lnker)-mean(subset(minta$test, nem==1)$lnker)
+    
+  # magyarázott rész
+    expl <- mean(predict(A_oax_RF_R1_ref, subset(minta$test, nem==0)))-
+      mean(predict(A_oax_RF_R1_ref, subset(minta$test, nem==1)))
+    
+    
+  # nem magyarázott rész
+    unexpl <- mean(predict(A_oax_RF_female, subset(minta$test, nem==0)))-
+      mean(predict(A_oax_RF_R1_ref, subset(minta$test, nem==0)))+
+      mean(predict(A_oax_RF_R1_ref, subset(minta$test, nem==1)))-
+      mean(predict(A_oax_RF_male, subset(minta$test, nem==1)))
+    
+  # eredmények
+    results_RF <- as.data.frame(rbind(results_RF,(cbind(modszer="A_R1", nyers=raw, magyarazott=expl, 
+                                                        nem_magyarazott=unexpl, 
+                                                        kulonbseg=raw-expl-unexpl))))
+    
+    
+
+# B_R2
+# train adatbázison
+  # nyers különbség
+    raw <- mean(subset(minta$train, nem==0)$lnker)-mean(subset(minta$train, nem==1)$lnker)
+    
+  # magyarázott rész
+    expl <- mean(predict(B_oax_RF_R2_ref, subset(minta$train, nem==0)))-
+      mean(predict(B_oax_RF_R2_ref, subset(minta$train, nem==1)))
+    
+    
+    # nem magyarázott rész
+    unexpl <- mean(B_oax_RF_female$predicted)-
+      mean(predict(B_oax_RF_R2_ref, subset(minta$train, nem==0)))+
+      mean(predict(B_oax_RF_R2_ref, subset(minta$train, nem==1)))-
+      mean(B_oax_RF_male$predicted)
+    
+    # eredmények
+    results_RF <- as.data.frame(rbind(results_RF, (cbind(modszer="B_R2", nyers=raw, magyarazott=expl, 
+                                       nem_magyarazott=unexpl, 
+                                       kulonbseg=raw-expl-unexpl))))
+    
+# test adatbázison
+  # nyers különbség
+    raw <- mean(subset(minta$test, nem==0)$lnker)-mean(subset(minta$test, nem==1)$lnker)
+    
+  # magyarázott rész
+    expl <- mean(predict(B_oax_RF_R2_ref, subset(minta$test, nem==0)))-
+      mean(predict(B_oax_RF_R2_ref, subset(minta$test, nem==1)))
+    
+    
+  # nem magyarázott rész
+    unexpl <- mean(predict(B_oax_RF_female, subset(minta$test, nem==0)))-
+      mean(predict(B_oax_RF_R2_ref, subset(minta$test, nem==0)))+
+      mean(predict(B_oax_RF_R2_ref, subset(minta$test, nem==1)))-
+      mean(predict(B_oax_RF_male, subset(minta$test, nem==1)))
+    
+  # eredmények
+    results_RF <- as.data.frame(rbind(results_RF,(cbind(modszer="B_R2", nyers=raw, magyarazott=expl, 
+                                                        nem_magyarazott=unexpl, 
+                                                        kulonbseg=raw-expl-unexpl))))
+    
+    
+# B_R1
+# train adatbázison
+  # nyers különbség
+    raw <- mean(subset(minta$train, nem==0)$lnker)-mean(subset(minta$train, nem==1)$lnker)
+    
+  # magyarázott rész
+    expl <- mean(predict(B_oax_RF_R1_ref, subset(minta$train, nem==0)))-
+      mean(predict(B_oax_RF_R1_ref, subset(minta$train, nem==1)))
+    
+    
+  # nem magyarázott rész
+    unexpl <- mean(B_oax_RF_female$predicted)-
+      mean(predict(B_oax_RF_R1_ref, subset(minta$train, nem==0)))+
+      mean(predict(B_oax_RF_R1_ref, subset(minta$train, nem==1)))-
+      mean(B_oax_RF_male$predicted)
+    
+  # eredmények
+    results_RF <- as.data.frame(rbind(results_RF,(cbind(modszer="B_R1", nyers=raw, magyarazott=expl, 
+                                                        nem_magyarazott=unexpl, 
+                                                        kulonbseg=raw-expl-unexpl))))
+    
+# test adatbázison
+  # nyers különbség
+    raw <- mean(subset(minta$test, nem==0)$lnker)-mean(subset(minta$test, nem==1)$lnker)
+    
+  # magyarázott rész
+    expl <- mean(predict(B_oax_RF_R1_ref, subset(minta$test, nem==0)))-
+      mean(predict(B_oax_RF_R1_ref, subset(minta$test, nem==1)))
+    
+    
+    # nem magyarázott rész
+    unexpl <- mean(predict(B_oax_RF_female, subset(minta$test, nem==0)))-
+      mean(predict(B_oax_RF_R1_ref, subset(minta$test, nem==0)))+
+      mean(predict(B_oax_RF_R1_ref, subset(minta$test, nem==1)))-
+      mean(predict(B_oax_RF_male, subset(minta$test, nem==1)))
+    
+    # eredmények
+    results_RF <- as.data.frame(rbind(results_RF,(cbind(modszer="B_R1", nyers=raw, magyarazott=expl, 
+                                                        nem_magyarazott=unexpl, 
+                                                        kulonbseg=raw-expl-unexpl))))
+    
+# C_R2
+# train adatbázison
+  # nyers különbség
+    raw <- mean(subset(minta$train, nem==0)$lnker)-mean(subset(minta$train, nem==1)$lnker)
+    
+  # magyarázott rész
+    expl <- mean(predict(C_oax_RF_R2_ref, subset(minta$train, nem==0)))-
+      mean(predict(C_oax_RF_R2_ref, subset(minta$train, nem==1)))
+    
+    
+  # nem magyarázott rész
+    unexpl <- mean(C_oax_RF_female$predicted)-
+      mean(predict(C_oax_RF_R2_ref, subset(minta$train, nem==0)))+
+      mean(predict(C_oax_RF_R2_ref, subset(minta$train, nem==1)))-
+      mean(C_oax_RF_male$predicted)
+    
+  # eredmények
+    results_RF <- as.data.frame(rbind(results_RF, (cbind(modszer="C_R2", nyers=raw, magyarazott=expl, 
+                                                         nem_magyarazott=unexpl, 
+                                                         kulonbseg=raw-expl-unexpl))))
+    
+# test adatbázison
+  # nyers különbség
+    raw <- mean(subset(minta$test, nem==0)$lnker)-mean(subset(minta$test, nem==1)$lnker)
+    
+  # magyarázott rész
+    expl <- mean(predict(C_oax_RF_R2_ref, subset(minta$test, nem==0)))-
+      mean(predict(C_oax_RF_R2_ref, subset(minta$test, nem==1)))
+    
+    
+  # nem magyarázott rész
+    unexpl <- mean(predict(C_oax_RF_female, subset(minta$test, nem==0)))-
+      mean(predict(C_oax_RF_R2_ref, subset(minta$test, nem==0)))+
+      mean(predict(C_oax_RF_R2_ref, subset(minta$test, nem==1)))-
+      mean(predict(C_oax_RF_male, subset(minta$test, nem==1)))
+    
+    # eredmények
+    results_RF <- as.data.frame(rbind(results_RF,(cbind(modszer="C_R2", nyers=raw, magyarazott=expl, 
+                                                        nem_magyarazott=unexpl, 
+                                                        kulonbseg=raw-expl-unexpl))))
+    
+    
+# C_R1
+# train adatbázison
+  # nyers különbség
+    raw <- mean(subset(minta$train, nem==0)$lnker)-mean(subset(minta$train, nem==1)$lnker)
+    
+  # magyarázott rész
+    expl <- mean(predict(C_oax_RF_R1_ref, subset(minta$train, nem==0)))-
+      mean(predict(C_oax_RF_R1_ref, subset(minta$train, nem==1)))
+    
+    
+  # nem magyarázott rész
+    unexpl <- mean(C_oax_RF_female$predicted)-
+      mean(predict(C_oax_RF_R1_ref, subset(minta$train, nem==0)))+
+      mean(predict(C_oax_RF_R1_ref, subset(minta$train, nem==1)))-
+      mean(C_oax_RF_male$predicted)
+    
+  # eredmények
+    results_RF <- as.data.frame(rbind(results_RF,(cbind(modszer="C_R1", nyers=raw, magyarazott=expl, 
+                                                        nem_magyarazott=unexpl, 
+                                                        kulonbseg=raw-expl-unexpl))))
+    
+# test adatbázison
+  # nyers különbség
+    raw <- mean(subset(minta$test, nem==0)$lnker)-mean(subset(minta$test, nem==1)$lnker)
+    
+  # magyarázott rész
+    expl <- mean(predict(C_oax_RF_R1_ref, subset(minta$test, nem==0)))-
+      mean(predict(C_oax_RF_R1_ref, subset(minta$test, nem==1)))
+    
+  # nem magyarázott rész
+    unexpl <- mean(predict(C_oax_RF_female, subset(minta$test, nem==0)))-
+      mean(predict(C_oax_RF_R1_ref, subset(minta$test, nem==0)))+
+      mean(predict(C_oax_RF_R1_ref, subset(minta$test, nem==1)))-
+      mean(predict(C_oax_RF_male, subset(minta$test, nem==1)))
+    
+  # eredmények
+    results_RF <- as.data.frame(rbind(results_RF,(cbind(modszer="C_R1", nyers=raw, magyarazott=expl, 
+                                                        nem_magyarazott=unexpl, 
+                                                        kulonbseg=raw-expl-unexpl))))
+    
+    
+write.csv(results, file="results_regr_2008.csv")
+write.csv(results_RF, file="results_RF_2008.csv")

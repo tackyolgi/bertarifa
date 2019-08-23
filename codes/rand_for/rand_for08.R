@@ -27,7 +27,7 @@ library(randomForest)
 
 source('~/kutatas/bertarifa/codes/becslesek/becslesek_03.R', encoding = 'UTF-8')
 
-minta <- get_sample(tarifred_09, obs_num)
+minta <- get_sample(tarifred_10, obs_num)
 
 A_oax_regr <- get_A_oax_regr(minta$train)
 B_oax_regr <- get_B_oax_regr(minta$train)
@@ -550,5 +550,5 @@ C_oax_regr <- get_C_oax_regr(minta$train)
                                                         kulonbseg=raw-expl-unexpl))))
     
     
-write.csv(results, file="results_regr_2008.csv")
-write.csv(results_RF, file="results_RF_2008.csv")
+write.csv(results, file="results_regr_2009.csv")
+write.csv(results_RF, file="results_RF_2009.csv")

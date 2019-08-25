@@ -550,5 +550,5 @@ C_oax_regr <- get_C_oax_regr(minta$train)
                                                         kulonbseg=raw-expl-unexpl))))
     
     
-write.csv(results, file="results_regr_2009.csv")
-write.csv(results_RF, file="results_RF_2009.csv")
+write.csv(results, file="results_regr_2010.csv")
+write.csv(results_RF, file="results_RF_2010.csv")

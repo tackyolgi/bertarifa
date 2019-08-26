@@ -27,7 +27,7 @@ library(randomForest)
 
 source('~/kutatas/bertarifa/codes/becslesek/becslesek_03.R', encoding = 'UTF-8')
 
-minta <- get_sample(tarifred_10, obs_num)
+minta <- get_sample(tarifred_11, obs_num)
 
 A_oax_regr <- get_A_oax_regr(minta$train)
 B_oax_regr <- get_B_oax_regr(minta$train)
@@ -286,7 +286,6 @@ C_oax_regr <- get_C_oax_regr(minta$train)
   A_oax_RF_female <- get_A_oax_RF_female(minta$train, valt_szama, level_szam, num_tree)
   A_oax_RF_male <- get_A_oax_RF_male(minta$train, valt_szama, level_szam, num_tree)
   
- 
   B_oax_RF_R1_ref <- get_B_oax_RF_R1(minta$train, valt_szama, level_szam, num_tree)
   B_oax_RF_R2_ref <- get_B_oax_RF_R2(minta$train, valt_szama, level_szam, num_tree)
   B_oax_RF_female <- get_B_oax_RF_female(minta$train, valt_szama, level_szam, num_tree)

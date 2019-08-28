@@ -27,7 +27,7 @@ library(randomForest)
 
 source('~/kutatas/bertarifa/codes/becslesek/becslesek_03.R', encoding = 'UTF-8')
 
-minta <- get_sample(tarifred_12, obs_num)
+minta <- get_sample(tarifred_13, obs_num)
 
 A_oax_regr <- get_A_oax_regr(minta$train)
 B_oax_regr <- get_B_oax_regr(minta$train)
@@ -296,7 +296,7 @@ C_oax_regr <- get_C_oax_regr(minta$train)
   C_oax_RF_female <- get_C_oax_RF_female(minta$train, valt_szama, level_szam, num_tree)
   C_oax_RF_male <- get_C_oax_RF_male(minta$train, valt_szama, level_szam, num_tree)
  
-  
+   
 # A_R2
 # train adatbázison
   # nyers különbség
@@ -549,5 +549,5 @@ C_oax_regr <- get_C_oax_regr(minta$train)
                                                         kulonbseg=raw-expl-unexpl))))
     
     
-write.csv(results, file="results_regr_2012.csv")
-write.csv(results_RF, file="results_RF_2012.csv")
+write.csv(results, file="results_regr_2013.csv")
+write.csv(results_RF, file="results_RF_2013.csv")

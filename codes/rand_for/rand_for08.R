@@ -549,5 +549,22 @@ C_oax_regr <- get_C_oax_regr(minta$train)
                                                         kulonbseg=raw-expl-unexpl))))
     
     
-write.csv(results, file="results_regr_2016.csv")
+
+    
 write.csv(results_RF, file="results_RF_2016.csv")
+write.csv(results, file="results_regr_2016.csv")
+
+# mse
+# trainre
+# regresszióra
+sum(A_oax_regr$reg$reg.pooled.2$residuals^2)/obs_num
+
+# RF-re
+sum((A_oax_RF_R2_ref$y-A_oax_RF_R2_ref$predicted)^2)/obs_num
+
+# testre
+# regresszióra
+sum((minta$test$lnker-predict(A_oax_regr$reg$reg.pooled.1, minta$test))^2)/obs_num
+
+# RF-re
+sum((minta$test$lnker-predict(A_oax_RF_R2_ref, minta$test))^2)/obs_num

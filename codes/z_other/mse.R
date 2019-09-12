@@ -1,4 +1,4 @@
-load("~/kutatas/bertarifa/ws_2015.RData")
+load("~/kutatas/bertarifa/ws_2016.RData")
 mean(minta$train$ev)
 mse <- matrix(NA, 4,2)
 mse[1:4,1] <- c("train_regr", "train_RF", "test_regr", "test_RF")
@@ -18,4 +18,4 @@ mse[3,2] <- sum((minta$test$lnker-predict(A_oax_regr$reg$reg.pooled.1, minta$tes
 mse[4,2] <- sum((minta$test$lnker-predict(A_oax_RF_R2_ref, minta$test))^2)/obs_num
 
 
-write.csv(mse, file="mse_2015.csv")
+write.csv(mse, file="mse_2016.csv")

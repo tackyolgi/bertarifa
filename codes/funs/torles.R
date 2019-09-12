@@ -20,5 +20,6 @@ delete_missing_obs <- function(df){
            & df$kshreg!=0
            & df$nok_sample>=10
            & df$ferfiak_sample>=10
+           & df$ag1!=15
            ,]
 }
